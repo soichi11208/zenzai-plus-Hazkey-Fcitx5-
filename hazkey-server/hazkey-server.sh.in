@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# hazkey-server wrapper script
+ENV_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/hazkey/env"
+# Load user defiend environment variables
+if [ -f "$ENV_FILE" ]; then
+    . "$ENV_FILE"
+fi
+
+exec "@CMAKE_INSTALL_FULL_LIBDIR@/hazkey/hazkey-server" "$@"

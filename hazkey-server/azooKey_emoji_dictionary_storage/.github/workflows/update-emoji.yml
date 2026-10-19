@@ -1,0 +1,32 @@
+name: Update EmojiDictionary
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: pip install -r requirements.txt
+      - run: python scripts/emoji.py
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          branch: chore/update-emoji-dictionary
+          commit-message: "chore: update emoji dictionary"
+          title: "chore: update emoji dictionary"
+          body: |
+            Auto-generated PR to update emoji dictionary.
+          base: main
+          add-paths: |
+            EmojiDictionary/*
+          delete-branch: true

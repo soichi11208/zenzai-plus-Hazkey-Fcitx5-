@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name[ja]=zinai-plus-Hazkey-Fcitx5設定ツール
+Name=zinai-plus-Hazkey-Fcitx5 Settings
+GenericName[ja]=入力メソッドの設定
+GenericName=Input Method Settings
+Comment[ja]=zinai-plus-Hazkey-Fcitx5の設定を変更します
+Comment=Configure zinai-plus-Hazkey-Fcitx5 settings
+Exec=hazkey-settings
+Icon=@HAZKEY_ICON_NAME@
+Categories=Settings;

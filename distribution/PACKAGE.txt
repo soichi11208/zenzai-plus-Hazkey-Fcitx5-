@@ -1,0 +1,5 @@
+zinai-plus-Hazkey-Fcitx5 0.3.0
+Source distribution, prepared 2026-10-19
+Includes modified native TTT implementation and public dictionaries.
+No model weights, user histories or learned snapshots included.
+Installer has not been executed as part of packaging.

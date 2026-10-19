@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package hazkey.config;
+
+option optimize_for = LITE_RUNTIME;
+
+message FileHash {
+    enum ConfigFileType {
+        CONFIG_MAIN = 0;
+        INPUT_TABLE = 1;
+    }
+
+    string name = 1;
+    string sha256sum = 2;
+    ConfigFileType type = 3;
+}
+
+message Keymap {
+    string name = 1;
+    bool is_built_in = 2;
+    string filename = 3;
+}
+
+message InputTable {
+    string name = 1;
+    bool is_built_in = 2;
+    string filename = 3;
+}
+
+message BackendDevice {
+    string name = 1;
+    string desc = 2;
+}
+
+message Profile {
+    enum AutoConvertMode {
+        AUTO_CONVERT_MODE_UNSPECIFIED = 0;
+        AUTO_CONVERT_DISABLED = 1;
+        AUTO_CONVERT_ALWAYS = 2;
+        AUTO_CONVERT_FOR_MULTIPLE_CHARS = 3;
+    }
+
+    enum AuxTextMode {
+        AUX_TEXT_MODE_UNSPECIFIED = 0;
+        AUX_TEXT_DISABLED = 1;
+        AUX_TEXT_SHOW_ALWAYS = 2;
+        AUX_TEXT_SHOW_WHEN_CURSOR_NOT_AT_END = 3;
+    }
+
+    enum SuggestionListMode {
+        SUGGESTION_LIST_MODE_UNSPECIFIED = 0;
+        SUGGESTION_LIST_DISABLED = 1;
+        SUGGESTION_LIST_SHOW_NORMAL_RESULTS = 2;
+        SUGGESTION_LIST_SHOW_PREDICTIVE_RESULTS = 3;
+    }
+
+    message SpecialConversionMode {
+        optional bool comma_separated_number = 1;
+        optional bool mail_domain = 2;
+        optional bool calendar = 3;
+        optional bool time = 4;
+        optional bool roman_typography = 5;
+        optional bool unicode_codepoint = 6;
+        optional bool hazkey_version = 7;
+        optional bool halfwidth_katakana = 50;
+        optional bool extended_emoji = 51;
+    }
+
+    message EnabledKeymap {
+        optional string name = 1;
+        optional bool is_built_in = 2;
+        optional string filename = 3;
+    }
+
+    message EnabledInputTable {
+        optional string name = 1;
+        optional bool is_built_in = 2;
+        optional string filename = 3;
+    }
+
+    optional string server_version = 4;
+
+    string profile_name = 5;
+    string profile_id = 6;
+
+    optional bool use_default_input_ui_settings = 10;
+    optional AutoConvertMode auto_convert_mode = 11;
+    optional AuxTextMode aux_text_mode = 12;
+    optional SuggestionListMode suggestion_list_mode = 13;
+    optional bool use_rich_suggestion = 14;
+    optional int32 num_suggestions = 15;
+
+    optional bool use_default_conversion_ui_settings = 20;
+    optional int32 num_candidates_per_page = 21;
+    optional bool use_rich_candidates = 22;
+
+    optional bool use_default_history_settings = 30;
+    optional bool use_profile_independent_history = 31;
+    optional bool use_input_history = 32;
+    optional bool stop_store_new_history = 23;
+
+    optional bool use_default_special_conversion_settings = 40;
+    optional SpecialConversionMode special_conversion_mode = 41;
+
+    optional bool use_default_keymap_settings = 50;
+    repeated EnabledKeymap enabled_keymaps = 51;
+
+    optional bool use_default_table_settings = 55;
+    repeated EnabledInputTable enabled_tables = 56;
+
+    optional string submode_entry_point_chars = 60;
+
+    optional bool use_default_zenzai_settings = 100;
+    optional bool zenzai_enable = 101;
+    optional int32 zenzai_infer_limit = 102;
+    optional bool zenzai_contextual_mode = 103;
+    optional bool use_zenzai_custom_weight = 105;
+    optional string zenzai_weight_path = 106;
+    optional string zenzai_backend_device_name = 107;
+
+    optional string zenzai_profile = 120;
+    optional string zenzai_topic = 121;
+    optional string zenzai_style = 122;
+    optional string zenzai_preference = 123;
+}
+
+// Request messages
+
+message GetConfig {}
+
+message SetConfig {
+    repeated FileHash file_hashes = 1;
+    repeated Profile profiles = 2;
+}
+
+message GetDefaultProfile {}
+
+message ClearAllHistory {
+    string profile_id = 1;
+}
+
+message ReloadZenzaiModel {}
+
+// Response messages
+
+message CurrentConfig {
+    repeated FileHash file_hashes = 1;
+    repeated Profile profiles = 2;
+    repeated Keymap available_keymaps = 3;
+    repeated InputTable available_tables = 4;
+    repeated BackendDevice available_zenzai_backend_devices = 7;
+    bool zenzai_model_available = 8;
+    string zenzai_model_path = 9;
+    string xdg_config_home_path = 6;
+}

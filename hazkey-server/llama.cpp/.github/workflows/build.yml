@@ -1,0 +1,208 @@
+name: CI
+
+on:
+    workflow_dispatch: # allows manual triggering
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.head_ref && github.ref || github.run_id }}
+    cancel-in-progress: true
+
+env:
+    BRANCH_NAME: ${{ github. head_ref || github.ref_name }}
+
+jobs:
+    build:
+        env:
+            CUDACXX: /usr/local/cuda-12.4/bin/nvcc
+        strategy:
+            matrix:
+                include:
+                    - name: "x86_64-glibc"
+                      runner: ubuntu-22.04
+                      arch: x86_64
+                    - name: "aarch64-glibc"
+                      runner: ubuntu-24.04-arm
+                      arch: aarch64
+
+        runs-on: ${{ matrix.runner }}
+        name: Build ${{ matrix.name }}
+
+        steps:
+            - name: Clone
+              id: checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Dependencies
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install build-essential cmake wget gnupg2
+
+            - name: Vulkan Dependencies (Ubuntu 24.04 or later)
+              if: matrix.runner != 'ubuntu-22.04'
+              run: |
+                  sudo apt-get install -y libvulkan-dev glslc
+
+            - name: Vulkan Dependencies (Ubuntu 22.04 x86_64)
+              if: matrix.runner == 'ubuntu-22.04'
+              run: |
+                  wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+                  sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-jammy.list https://packages.lunarg.com/vulkan/lunarg-vulkan-jammy.list
+                  sudo apt-get update -y
+                  sudo apt-get install -y mesa-vulkan-drivers vulkan-sdk
+
+            - name: Install CUDA Toolkit (Ubuntu 22.04 x86_64)
+              if: matrix.runner == 'ubuntu-22.04'
+              run: |
+                  wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+                  sudo dpkg -i cuda-keyring_1.1-1_all.deb
+                  sudo apt-get update
+                  sudo apt-get install -y cuda-nvcc-12-4 cuda-cudart-dev-12-4 libcublas-dev-12-4
+
+            # - name: Install ROCm (x86_64)
+            #   if: matrix.arch == 'x86_64'
+            #   run: |
+            #       sudo mkdir --parents --mode=0755 /etc/apt/keyrings
+            #       wget https://repo.radeon.com/rocm/rocm.gpg.key -O - | gpg --dearmor | sudo tee /etc/apt/keyrings/rocm.gpg > /dev/null
+            #       echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/rocm.gpg] https://repo.radeon.com/rocm/apt/6.0 jammy main" | sudo tee /etc/apt/sources.list.d/rocm.list
+            #       sudo apt-get update
+            #       sudo apt-get install -y hip-runtime-amd hip-dev rocblas-dev
+
+            - name: Build
+              id: make_build
+              run: |
+                  cmake -B build \
+                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_INSTALL_RPATH='$ORIGIN' \
+                    -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
+                    -DCMAKE_SKIP_BUILD_RPATH=ON \
+                    -DBUILD_SHARED_LIBS=ON \
+                    -DLLAMA_CURL=OFF \
+                    -DLLAMA_STANDALONE=OFF \
+                    -DGGML_NATIVE=OFF \
+                    -DGGML_LTO=ON \
+                    -DGGML_BACKEND_DL=ON \
+                    -DGGML_CPU_ALL_VARIANTS=${{ matrix.arch == 'x86_64' && 'ON' || 'OFF' }} \
+                    -DGGML_CPU=ON \
+                    -DGGML_VULKAN=ON \
+                    -DGGML_CUDA=${{ matrix.arch == 'x86_64' && 'ON' || 'OFF' }}
+                  cmake --build build --config Release -j $(nproc)
+
+            - name: Collect build artifacts
+              id: collect_artifacts
+              run: |
+                  set -e
+                  mkdir -p artifact/build
+                  cp build/bin/*.so artifact/build/ || true
+
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: libllama-linux-${{ matrix.name }}-${{ github.run_id }}
+                  path: artifact/build
+
+    build-musl:
+        strategy:
+            matrix:
+                include:
+                    - name: "x86_64-musl"
+                      runner: ubuntu-22.04
+                      arch: x86_64
+                      container: alpine:latest
+
+        runs-on: ${{ matrix.runner }}
+        container: ${{ matrix.container }}
+        name: Build ${{ matrix.name }}
+
+        steps:
+            - name: Clone
+              id: checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Dependencies
+              run: |
+                  apk update
+                  apk add --no-cache build-base cmake git vulkan-headers vulkan-loader-dev shaderc-dev
+
+            - name: Build
+              id: make_build
+              run: |
+                  cmake -B build \
+                    -DCMAKE_BUILD_TYPE=Release \
+                    -DCMAKE_INSTALL_RPATH='$ORIGIN' \
+                    -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
+                    -DCMAKE_SKIP_BUILD_RPATH=ON \
+                    -DBUILD_SHARED_LIBS=ON \
+                    -DLLAMA_CURL=OFF \
+                    -DLLAMA_STANDALONE=OFF \
+                    -DGGML_NATIVE=OFF \
+                    -DGGML_LTO=ON \
+                    -DGGML_BACKEND_DL=ON \
+                    -DGGML_CPU_ALL_VARIANTS=${{ matrix.arch == 'x86_64' && 'ON' || 'OFF' }} \
+                    -DGGML_CPU=ON \
+                    -DGGML_VULKAN=ON
+                  cmake --build build --config Release -j $(nproc)
+
+            - name: Collect build artifacts
+              id: collect_artifacts
+              run: |
+                  set -e
+                  mkdir -p artifact/build
+                  cp build/bin/*.so artifact/build/ || true
+
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: libllama-linux-${{ matrix.name }}-${{ github.run_id }}
+                  path: artifact/build
+
+    build-freebsd:
+        runs-on: ubuntu-22.04
+        name: Build FreeBSD x86_64
+
+        steps:
+            - name: Clone
+              id: checkout
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Build on FreeBSD
+              id: freebsd_build
+              uses: cross-platform-actions/action@v0.25.0
+              with:
+                  operating_system: freebsd
+                  version: "14.1"
+                  run: |
+                      sudo pkg install -y cmake git vulkan-headers vulkan-loader shaderc
+                      cmake -B build \
+                        -DCMAKE_BUILD_TYPE=Release \
+                        -DCMAKE_INSTALL_RPATH='$ORIGIN' \
+                        -DCMAKE_BUILD_WITH_INSTALL_RPATH=ON \
+                        -DCMAKE_SKIP_BUILD_RPATH=ON \
+                        -DBUILD_SHARED_LIBS=ON \
+                        -DLLAMA_CURL=OFF \
+                        -DLLAMA_STANDALONE=OFF \
+                        -DGGML_NATIVE=OFF \
+                        -DGGML_LTO=ON \
+                        -DGGML_BACKEND_DL=ON \
+                        -DGGML_CPU_ALL_VARIANTS=ON \
+                        -DGGML_CPU=ON \
+                        -DGGML_VULKAN=ON
+                      cmake --build build --config Release -j $(sysctl -n hw.ncpu)
+
+            - name: Collect build artifacts
+              id: collect_artifacts
+              run: |
+                  set -e
+                  mkdir -p artifact/build
+                  cp build/bin/*.so artifact/build/ || true
+
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: libllama-freebsd-x86_64-${{ github.run_id }}
+                  path: artifact/build

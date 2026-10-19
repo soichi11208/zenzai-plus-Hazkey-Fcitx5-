@@ -1,0 +1,9 @@
+[Addon]
+Name=zinai-plus-Hazkey-Fcitx5
+Category=InputMethod
+Version=@PROJECT_VERSION@
+Library=fcitx5-hazkey
+Type=SharedLibrary
+OnDemand=True
+Configurable=True
+Icon=@HAZKEY_ICON_NAME@

@@ -1,0 +1,8 @@
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
+
+inline constexpr char HAZKEY_VERSION_STR[] = "zinai-plus-Hazkey-Fcitx5 @PROJECT_VERSION@";
+
+inline constexpr char HAZKEY_TTT_EXPORT_SCRIPT[] = "@HAZKEY_TTT_EXPORT_SCRIPT@";
+
+#endif

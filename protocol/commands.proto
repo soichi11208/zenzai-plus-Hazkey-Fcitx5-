@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package hazkey.commands;
+
+option optimize_for = LITE_RUNTIME;
+
+// Request messages
+
+message NewComposingText {}
+
+message SetContext {
+    string context = 1;
+    int32 anchor = 2;
+}
+
+message InputChar {
+    string text = 1;
+}
+
+message ModifierEvent {
+    enum ModifierType {
+        MODIFIER_TYPE_UNSPECIFIED = 0;
+        SHIFT = 1;
+    }
+
+    enum EventType {
+        EVENT_TYPE_UNSPECIFIED = 0;
+        PRESS = 1;
+        RELEASE = 2;
+    }
+
+    ModifierType mod_type = 1;
+    EventType event_type = 2;
+}
+
+message MoveCursor {
+    int32 offset = 1;
+}
+
+message PrefixComplete {
+    int32 index = 1;
+}
+
+message DeleteLeft {}
+
+message DeleteRight {}
+
+message GetComposingString {
+    enum CharType {
+        HIRAGANA = 0;
+        KATAKANA_FULL = 1;
+        KATAKANA_HALF = 2;
+        ALPHABET_FULL = 3;
+        ALPHABET_HALF = 4;
+    }
+
+    CharType char_type = 1;
+    string current_preedit = 2;
+}
+
+message GetHiraganaWithCursor {}
+
+message GetCandidates {
+    bool is_suggest = 1;
+}
+
+message GetCurrentInputModeInfo {}
+
+message SaveLearningData {}
+
+// Response messages
+
+message Text {
+    string text = 1;
+}
+
+message TextWithCursor {
+    string beforeCursosr = 1;
+    string onCursor = 2;
+    string afterCursor = 3;
+}
+
+message CandidatesResult {
+    message Candidate {
+        string text = 1;
+        string sub_hiragana = 2;
+    }
+
+    repeated Candidate candidates = 1;
+    string live_text = 2;
+    int32 live_text_index = 3;
+    int32 page_size = 4;
+}
+
+message CurrentInputModeInfo {
+    enum InputMode {
+        NORMAL = 0;
+        DIRECT = 1;
+    }
+
+    InputMode input_mode = 1;
+}

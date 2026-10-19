@@ -1,0 +1,7 @@
+let systemResourcePath: String = "@HAZKEY_SERVER_SYSTEM_RESOURCE_PATH@/hazkey"
+let systemLibraryPath: String = "@HAZKEY_SERVER_SYSTEM_LIBRARY_PATH@/hazkey"
+let zenzaiTTTScriptPath: String = "@HAZKEY_SERVER_TTT_SCRIPT_PATH@"
+let zenzaiTTTConverterPath: String = "@HAZKEY_SERVER_TTT_CONVERTER_PATH@"
+let zenzaiTTTSourceScriptPath: String = "@HAZKEY_SERVER_TTT_SOURCE_SCRIPT_PATH@"
+let zenzaiTTTSourceConverterPath: String = "@HAZKEY_SERVER_TTT_SOURCE_CONVERTER_PATH@"
+let hazkeyVersion: String = "@PROJECT_VERSION@"

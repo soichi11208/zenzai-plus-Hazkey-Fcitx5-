@@ -1,0 +1,26 @@
+/.cache
+/build
+
+/.vscode
+/.zed
+/.idea
+
+/zenz-v3.gguf
+
+/CMakeFiles
+/CMakeCache.txt
+
+/compile_commands.json
+
+# Local build / private model and adaptation data
+/.build-distribution/
+__pycache__/
+*.pyc
+*.gguf
+*.safetensors
+*.pt
+*.pth
+.env
+/native-ttt-*.bin
+/examples.jsonl
+/registered-words.json
