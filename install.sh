@@ -28,4 +28,4 @@ if [[ -w $prefix ]]; then
 else
  sudo python3 "$root/distribution/deploy.py" install "$prefix" "$stage"
 fi
-printf '\nInstalled zinai-plus-Hazkey-Fcitx5. Log out and back in, then select it in Fcitx5.\nEnable Zenzai in settings to download the FT model; select your GPU in the device setting.\n'
+printf '\nInstalled zenzai-plus-Hazkey-Fcitx5. Log out and back in, then select it in Fcitx5.\nEnable Zenzai in settings to download the FT model; select your GPU in the device setting.\n'

@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>zinai-plus-Hazkey-Fcitx5 Settings</string>
+   <string>zenzai-plus-Hazkey-Fcitx5 Settings</string>
   </property>
   <layout class="QVBoxLayout" name="MainWindowLayout">
    <property name="spacing">
@@ -569,7 +569,7 @@
              <item row="2" column="2">
               <widget class="QCheckBox" name="hazkeyVersionConversion">
                <property name="text">
-                <string>zinai-plus-Hazkey-Fcitx5 version</string>
+                <string>zenzai-plus-Hazkey-Fcitx5 version</string>
                </property>
               </widget>
              </item>
@@ -1748,12 +1748,12 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
-            <layout class="QHBoxLayout" name="aboutzinai-plus-Hazkey-Fcitx5TitleLayout">
+            <layout class="QHBoxLayout" name="aboutzenzai-plus-Hazkey-Fcitx5TitleLayout">
              <property name="topMargin">
               <number>10</number>
              </property>
              <item>
-              <spacer name="aboutzinai-plus-Hazkey-Fcitx5TitleLeftSpacer">
+              <spacer name="aboutzenzai-plus-Hazkey-Fcitx5TitleLeftSpacer">
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -1766,9 +1766,9 @@
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="aboutzinai-plus-Hazkey-Fcitx5TitleLogoLayout">
+              <layout class="QVBoxLayout" name="aboutzenzai-plus-Hazkey-Fcitx5TitleLogoLayout">
                <item>
-                <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5TitleLogo">
+                <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5TitleLogo">
                  <property name="maximumSize">
                   <size>
                    <width>180</width>
@@ -1784,7 +1784,7 @@
                 </widget>
                </item>
                <item>
-                <spacer name="aboutzinai-plus-Hazkey-Fcitx5TitleLogoBottomSpacer">
+                <spacer name="aboutzenzai-plus-Hazkey-Fcitx5TitleLogoBottomSpacer">
                  <property name="orientation">
                   <enum>Qt::Orientation::Vertical</enum>
                  </property>
@@ -1802,11 +1802,11 @@
               </layout>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="aboutzinai-plus-Hazkey-Fcitx5TitleTextContainer">
+              <layout class="QVBoxLayout" name="aboutzenzai-plus-Hazkey-Fcitx5TitleTextContainer">
                <item>
-                <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5Titlezinai-plus-Hazkey-Fcitx5Text">
+                <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5Titlezenzai-plus-Hazkey-Fcitx5Text">
                  <property name="text">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;zinai-plus-Hazkey-Fcitx5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt;&quot;&gt;zenzai-plus-Hazkey-Fcitx5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="textFormat">
                   <enum>Qt::TextFormat::RichText</enum>
@@ -1817,7 +1817,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5TitleVersionText">
+                <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5TitleVersionText">
                  <property name="text">
                   <string>0.0.0</string>
                  </property>
@@ -1829,7 +1829,7 @@
               </layout>
              </item>
              <item>
-              <spacer name="aboutzinai-plus-Hazkey-Fcitx5TitleRightSpacer">
+              <spacer name="aboutzenzai-plus-Hazkey-Fcitx5TitleRightSpacer">
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -1844,9 +1844,9 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="aboutzinai-plus-Hazkey-Fcitx5AdditionalInfosLayout">
+            <layout class="QHBoxLayout" name="aboutzenzai-plus-Hazkey-Fcitx5AdditionalInfosLayout">
              <item>
-              <spacer name="aboutzinai-plus-Hazkey-Fcitx5AdditionalInfosLeftSpacer">
+              <spacer name="aboutzenzai-plus-Hazkey-Fcitx5AdditionalInfosLeftSpacer">
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -1859,9 +1859,9 @@
               </spacer>
              </item>
              <item>
-              <layout class="QVBoxLayout" name="aboutzinai-plus-Hazkey-Fcitx5AdditionalInfosMainLayout">
+              <layout class="QVBoxLayout" name="aboutzenzai-plus-Hazkey-Fcitx5AdditionalInfosMainLayout">
                <item>
-                <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5Copyright">
+                <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5Copyright">
                  <property name="text">
                   <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copyright 2024-2025 &lt;a href=&quot;https://hiira.dev/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Hiira&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
@@ -1874,7 +1874,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5License">
+                <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5License">
                  <property name="text">
                   <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Released under &lt;a href=&quot;https://opensource.org/license/mit&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;MIT License&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
@@ -1887,7 +1887,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5AzookeyEngine">
+                <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5AzookeyEngine">
                  <property name="text">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Conversion engine provided by &lt;a href=&quot;https://azookey.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;azooKey&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
@@ -1902,7 +1902,7 @@
               </layout>
              </item>
              <item>
-              <spacer name="aboutzinai-plus-Hazkey-Fcitx5AdditionalInfosRightSpacer">
+              <spacer name="aboutzenzai-plus-Hazkey-Fcitx5AdditionalInfosRightSpacer">
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -1917,7 +1917,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="aboutzinai-plus-Hazkey-Fcitx5LinksLayout">
+            <layout class="QHBoxLayout" name="aboutzenzai-plus-Hazkey-Fcitx5LinksLayout">
              <property name="topMargin">
               <number>10</number>
              </property>
@@ -1925,7 +1925,7 @@
               <number>10</number>
              </property>
              <item>
-              <spacer name="aboutzinai-plus-Hazkey-Fcitx5LinksLeftSpacer">
+              <spacer name="aboutzenzai-plus-Hazkey-Fcitx5LinksLeftSpacer">
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -1938,7 +1938,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5WebsiteLink">
+              <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5WebsiteLink">
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://hazkey.hiira.dev/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Website&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -1951,7 +1951,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5DocumentLink">
+              <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5DocumentLink">
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://hazkey.hiira.dev/docs&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Document&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -1964,7 +1964,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5SourceLink">
+              <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5SourceLink">
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/7ka-Hiira/fcitx5-hazkey&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Source code&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -1977,7 +1977,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="aboutzinai-plus-Hazkey-Fcitx5IssueReportLink">
+              <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5IssueReportLink">
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/7ka-Hiira/fcitx5-hazkey/issues&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Issue report&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
@@ -1990,7 +1990,7 @@
               </widget>
              </item>
              <item>
-              <spacer name="aboutzinai-plus-Hazkey-Fcitx5LinksRightSpacer">
+              <spacer name="aboutzenzai-plus-Hazkey-Fcitx5LinksRightSpacer">
                <property name="orientation">
                 <enum>Qt::Orientation::Horizontal</enum>
                </property>
@@ -2005,7 +2005,7 @@
             </layout>
            </item>
            <item>
-            <spacer name="aboutzinai-plus-Hazkey-Fcitx5TabBottomSpacer">
+            <spacer name="aboutzenzai-plus-Hazkey-Fcitx5TabBottomSpacer">
              <property name="orientation">
               <enum>Qt::Orientation::Vertical</enum>
              </property>

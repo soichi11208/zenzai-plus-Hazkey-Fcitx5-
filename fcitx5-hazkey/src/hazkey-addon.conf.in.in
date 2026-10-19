@@ -1,5 +1,5 @@
 [Addon]
-Name=zinai-plus-Hazkey-Fcitx5
+Name=zenzai-plus-Hazkey-Fcitx5
 Category=InputMethod
 Version=@PROJECT_VERSION@
 Library=fcitx5-hazkey

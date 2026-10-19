@@ -82,12 +82,12 @@ def main():
     try:
         writer = gguf.GGUFWriter(temporary, 'gpt2')
         for name, field in reader.fields.items():
-            if name.startswith(('GGUF.', 'zinai_plus.ttt.')) or name in ('general.architecture', 'general.file_type'): continue
+            if name.startswith(('GGUF.', 'zenzai_plus.ttt.')) or name in ('general.architecture', 'general.file_type'): continue
             writer.add_key_value(name, field.contents(), field.types[0])
         # Mixed types: preserve frozen tensor formats, keep learned tensors in F32.
         writer.add_uint32('general.file_type', 1024)
-        writer.add_string('zinai_plus.ttt.snapshot_sha256', hashlib.sha256(raw).hexdigest())
-        writer.add_uint64('zinai_plus.ttt.processed', cursor)
+        writer.add_string('zenzai_plus.ttt.snapshot_sha256', hashlib.sha256(raw).hexdigest())
+        writer.add_uint64('zenzai_plus.ttt.processed', cursor)
         for t in reader.tensors:
             if t.name in replacements: writer.add_tensor(t.name, replacements[t.name])
             else: writer.add_tensor(t.name, t.data, raw_dtype=t.tensor_type)

@@ -1,7 +1,7 @@
 [InputMethod]
-Name=zinai-plus-Hazkey-Fcitx5
+Name=zenzai-plus-Hazkey-Fcitx5
 Icon=@HAZKEY_ICON_NAME@
-Label=zinai+
+Label=zenzai+
 LangCode=ja
 Addon=hazkey
 Configurable=True

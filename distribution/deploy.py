@@ -12,7 +12,7 @@ mode, prefix = sys.argv[1:3]
 prefix = Path(prefix)
 if not prefix.is_absolute() or prefix == Path('/') or '..' in prefix.parts:
     raise SystemExit('Invalid prefix')
-state = prefix / 'share/zinai-plus-Hazkey-Fcitx5-install-state'
+state = prefix / 'share/zenzai-plus-Hazkey-Fcitx5-install-state'
 manifest = state / 'manifest.json'
 
 def digest(p):

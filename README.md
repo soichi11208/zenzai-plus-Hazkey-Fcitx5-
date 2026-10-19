@@ -1,4 +1,4 @@
-# zinai-plus-Hazkey-Fcitx5
+# zenzai-plus-Hazkey-Fcitx5
 
 Hazkeyをベースに、zenzai-plusとllama.cpp内でのIn-Place TTTに対応した日本語IME。
 
@@ -35,7 +35,7 @@ CUDAのコンパイラ指定などはCMake引数として渡せる。
 ```
 
 インストール後にログアウト・ログインし、Fcitx5の入力メソッドで
-**zinai-plus-Hazkey-Fcitx5**を選択。設定でZenzaiを有効化し、利用するデバイスを選ぶ。
+**zenzai-plus-Hazkey-Fcitx5**を選択。設定でZenzaiを有効化し、利用するデバイスを選ぶ。
 GPU番号は環境ごとに異なる。CPU/VulkanでのNative TTT性能は未検証。
 
 既存Hazkeyを置き換える構成。内部のアドオンID・実行ファイル名・保存先は互換性のため`hazkey`を維持し、同時インストールはできない。
