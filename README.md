@@ -1,70 +1,37 @@
-# zenzai-plus-Hazkey-Fcitx5
+# zenzai-plus-Hazkey-Fcitx5-
 
-Hazkeyをベースに、zenzai-plusとllama.cpp内でのIn-Place TTTに対応した日本語IME。
+Hazkeyをベースにzenzai-plusとllama.cpp内でのIn-Place TTTに対応させた。
 
 - Zenzai有効化時に [zenzai-plus](https://huggingface.co/soichi1208/zenzai-plus) のFT済みGGUFを取得。
-- 入力履歴からローカルで継続学習。推論と学習を別コンテキストで実行。
-- 辞書登録画面から単語を学習。通常辞書にはnico-pixivを優遇なしで追加。
-- モデル・入力履歴・個人の学習状態は配布物に含まない。
+- 入力履歴からローカルで学習。
+- 辞書登録画面から単語を学習。
 
-## インストール（ソースからビルド）
+## Quick start
 
-Linux向け。Swift 6.1以降、CMake 3.21以降、Ninja、C/C++コンパイラ、Python 3、
-Gettext、Fcitx5開発ライブラリ、Protobuf開発ライブラリとprotoc、Qt6 Widgets/Network/LinguistToolsが必要（Qt 6.7以降推奨）。
-CUDA版はCUDA Toolkitと対応するホストコンパイラ、NVIDIAドライバが必要。
-Swiftの外部依存とモデルの取得時にインターネット接続を使用する。
+Linux, Swift 6.1以上, CMake 3.21以上,Ninja,C/C++コンパイラ,Python 3.
+Gettext,Fcitx5開発ライブラリ,Protobuf開発ライブラリ,protoc,Qt6,Widgets/Network/LinguistTools, CUDA toolkit (option)
 
 ```sh
 ./install.sh
 ```
 
-既定はCUDA、`/usr`へインストール。ビルド後の配置時だけsudoを使用する。
-配布物には改造済みllama.cppと変換ライブラリ、辞書を同梱しており、submoduleの取得は不要。
+環境変数:
 
-```sh
-JOBS=8 ./install.sh
-BACKEND=vulkan ./install.sh  # Vulkan開発環境が必要
-BACKEND=cpu ./install.sh
-PREFIX=/usr/local ./install.sh
-```
+JOBS=n でコア数
 
-CUDAのコンパイラ指定などはCMake引数として渡せる。
+BACKEND= はvulkan, cpuがいけるcudaが規定
 
-```sh
-./install.sh -DCMAKE_CUDA_HOST_COMPILER=/usr/bin/g++-13
-```
+PREFIX= もいける
 
-インストール後にログアウト・ログインし、Fcitx5の入力メソッドで
-**zenzai-plus-Hazkey-Fcitx5**を選択。設定でZenzaiを有効化し、利用するデバイスを選ぶ。
-GPU番号は環境ごとに異なる。CPU/VulkanでのNative TTT性能は未検証。
+CUDAのコンパイラ指定はCMake引数。
 
-既存Hazkeyを置き換える構成。内部のアドオンID・実行ファイル名・保存先は互換性のため`hazkey`を維持し、同時インストールはできない。
-同じPREFIXにある置換対象ファイルは退避し、アンインストール時に復元する。
-他のPREFIXに入っているHazkeyやディストリビューションのパッケージとの重複は、先に整理する。
-パッケージ管理から上書き更新された場合、退避した版は古くなるので注意。
-
-## アンインストール
-
-```sh
-./uninstall.sh
-# PREFIXを指定して導入した場合は同じ値を指定
-PREFIX=/usr/local ./uninstall.sh
-```
-
-導入後に変更されたファイルは残す。ユーザーの設定・履歴・モデルは削除しない。
+既存Hazkeyを置き換える。
 
 ## 保存先
 
 - 設定：`${XDG_CONFIG_HOME:-~/.config}/hazkey`
 - モデル・学習状態：`${XDG_DATA_HOME:-~/.local/share}/hazkey`
 - 辞書キャッシュ：`${XDG_CACHE_HOME:-~/.cache}/hazkey`
-
-## TTTの検証
-
-4070 SUPERでの検証では更新＋保存が約0.13秒。入力確定から反映は待機込み約3〜4秒。
-通常TTTは必ず改善するわけではなく、後続学習による表記の揺れも残る。
-[検証結果](distribution/native-ttt-validation.md)と[実装資料](hazkey-server/tools/README-native-ttt.md)を参照。
-本配布用インストーラによる新規環境への導入は未検証。
 
 ## ライセンス
 
