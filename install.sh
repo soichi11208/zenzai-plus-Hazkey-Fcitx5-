@@ -37,8 +37,8 @@ if [[ $cuda == ON ]]; then
   done
   if [[ ${#cuda_host_args[@]} == 0 ]]; then echo "CUDA supports GCC up to $max_gcc; install a matching g++ or pass -DCMAKE_CUDA_HOST_COMPILER=PATH." >&2; exit 1; fi
   selected_host=${cuda_host_args[0]#*=}
-  cached_host=$(sed -n 's/^CMAKE_CUDA_HOST_COMPILER:FILEPATH=//p' "$build/CMakeCache.txt" 2>/dev/null | head -1)
-  if [[ -n $cached_host && $cached_host != "$selected_host" ]]; then rm -rf -- "$build"; fi
+  cached_host=$(sed -n 's/^CMAKE_CUDA_HOST_COMPILER:[^=]*=//p' "$build/CMakeCache.txt" 2>/dev/null | head -1)
+  if [[ -f "$build/CMakeCache.txt" && $cached_host != "$selected_host" ]]; then rm -rf -- "$build"; fi
  fi
 fi
 cmake -S "$root" -B "$build" -G Ninja \
