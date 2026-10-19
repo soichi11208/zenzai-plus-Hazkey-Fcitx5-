@@ -41,7 +41,5 @@ CUDAのコンパイラ指定はCMake引数。
 
 ## License
 
-このフォークで独自に追加・変更した部分は The Unlicense。
-上流Hazkey由来の部分はMIT、
-第三者コード・辞書はそれぞれのライセンスを維持する。
-モデルは別配布のCC BY-SA 4.0。[第三者表記](THIRD_PARTY_NOTICES.md)、[元のREADME](README.upstream.md)を参照。
+このフォークで独自に追加・変更した部分は The Unlicenseで上流Hazkey由来の部分はMIT。
+モデルは別配布のCC BY-SA 4.0
