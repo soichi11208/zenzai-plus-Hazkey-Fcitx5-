@@ -1817,7 +1817,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QLabel" name="aboutzenzai-plus-Hazkey-Fcitx5TitleVersionText">
+                <widget class="QLabel" name="aboutHazkeyTitleVersionText">
                  <property name="text">
                   <string>0.0.0</string>
                  </property>

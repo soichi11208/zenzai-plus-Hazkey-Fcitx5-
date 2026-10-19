@@ -17,5 +17,5 @@ add_subdirectory(hazkey-server)
 add_subdirectory(hazkey-settings)
 
 install(DIRECTORY distribution/dictionaries/ DESTINATION "${CMAKE_INSTALL_DATADIR}/hazkey/dictionaries")
-install(FILES LICENSE LICENSE.upstream-Hazkey THIRD_PARTY_NOTICES.md DESTINATION "${CMAKE_INSTALL_DATADIR}/doc/zenzai-plus-Hazkey-Fcitx5")
+install(FILES LICENSE DESTINATION "${CMAKE_INSTALL_DATADIR}/doc/zenzai-plus-Hazkey-Fcitx5")
 install(DIRECTORY distribution/licenses/ DESTINATION "${CMAKE_INSTALL_DATADIR}/doc/zenzai-plus-Hazkey-Fcitx5/licenses")
